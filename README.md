@@ -5,7 +5,7 @@ Sealed Secrets Converter
 
 
 Example POST body:
-```
+```json
 POST /convert
 
 {
