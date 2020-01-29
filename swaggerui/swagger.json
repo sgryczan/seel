@@ -1,0 +1,99 @@
+{
+  "swagger": "2.0",
+  "paths": {
+    "/convert": {
+      "post": {
+        "description": "Converts a supplied key to a sealed key",
+        "consumes": [
+          "text/plain"
+        ],
+        "produces": [
+          "text/plain"
+        ],
+        "tags": [
+          "convert"
+        ],
+        "operationId": "Convert",
+        "parameters": [
+          {
+            "description": "Name to be added.",
+            "name": "payload",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/kubeSecret"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Add an item to the database"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "kubeSecret": {
+      "description": "kubeSecret",
+      "type": "object",
+      "required": [
+        "kind",
+        "apiVersion",
+        "data"
+      ],
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "x-go-name": "APIVersion",
+          "example": "v1"
+        },
+        "data": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "uint8"
+            }
+          },
+          "x-go-name": "Data",
+          "example": {
+            "admin": "YWRtaW4=",
+            "password": "cGFzc3dvcmQ="
+          }
+        },
+        "kind": {
+          "type": "string",
+          "x-go-name": "Kind",
+          "example": "Secret"
+        },
+        "metadata": {
+          "$ref": "#/definitions/secretMetadata"
+        }
+      },
+      "x-go-package": "_/Users/sgryczan/repos/netapp/hci-tools/seel"
+    },
+    "secretMetadata": {
+      "description": "Secret Metadata",
+      "type": "object",
+      "required": [
+        "name",
+        "namespace"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "x-go-name": "Name",
+          "example": "myAwesomeSecret"
+        },
+        "namespace": {
+          "type": "string",
+          "x-go-name": "Namespace",
+          "example": "destinationNamespace"
+        }
+      },
+      "x-go-package": "_/Users/sgryczan/repos/netapp/hci-tools/seel"
+    }
+  }
+}
