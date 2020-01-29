@@ -23,7 +23,7 @@ POST /convert
 ```
 
 Response:
-```
+```yaml
 apiVersion: bitnami.com/v1alpha1
 kind: SealedSecret
 metadata:
