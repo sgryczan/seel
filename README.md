@@ -3,23 +3,15 @@ Sealed Secrets Converter
 
 ### Purpose: Converts normal K8S secrets into SealedSecrets for a given environment
 
+### Usage:
 
-Example POST body:
-```json
-POST /convert
-
-{
-  "apiVersion": "v1",
-  "data": {
-    "admin": "YWRtaW4=",
-    "password": "cGFzc3dvcmQ="
-  },
-  "kind": "Secret",
-  "metadata": {
-    "name": "myAwesomeSecret",
-    "namespace": "destinationNamespace"
-  }
-}
+Example:
+```
+kubectl -n dev create secret generic basic-auth \
+--from-literal=user=admin \
+--from-literal=password=admin \
+--dry-run \
+-o json | curl -X POST -d @- http://seel.sre-dev.solidfire.net/convert
 ```
 
 Response:
