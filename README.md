@@ -35,3 +35,9 @@ status: {}
 ```
 
 This file can then be added to the proper repository to be synced to the cluster by Flux.
+
+
+## Deployment to K8S
+The deployment manifest can be found in the `k8s` folder. 
+
+It should be deployed into the same namespace as the sealed secrets controller(usually `adm`)
