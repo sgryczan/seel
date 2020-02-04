@@ -5,7 +5,7 @@
       "post": {
         "description": "Converts a supplied key to a sealed key",
         "consumes": [
-          "text/plain"
+          "application/json"
         ],
         "produces": [
           "text/plain"
@@ -27,7 +27,13 @@
         ],
         "responses": {
           "200": {
-            "description": "Add an item to the database"
+            "description": "Conversion successful"
+          },
+          "400": {
+            "description": "Invalid request body"
+          },
+          "500": {
+            "description": "Conversion Error"
           }
         }
       }
