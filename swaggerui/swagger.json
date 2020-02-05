@@ -78,7 +78,8 @@
           "$ref": "#/definitions/secretMetadata"
         }
       },
-      "x-go-package": "_/Users/sgryczan/repos/netapp/hci-tools/seel"
+      "x-go-name": "KubeSecret",
+      "x-go-package": "gitlab.com/sgryczan/seel/api"
     },
     "secretMetadata": {
       "description": "Secret Metadata",
@@ -99,7 +100,8 @@
           "example": "destinationNamespace"
         }
       },
-      "x-go-package": "_/Users/sgryczan/repos/netapp/hci-tools/seel"
+      "x-go-name": "SecretMetadata",
+      "x-go-package": "gitlab.com/sgryczan/seel/api"
     }
   }
 }
