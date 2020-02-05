@@ -3,7 +3,7 @@
   "paths": {
     "/convert": {
       "post": {
-        "description": "Converts a supplied key to a sealed key",
+        "description": "Converts a supplied K8S Secret manifest (JSON) to an Encrypted Secret",
         "consumes": [
           "application/json"
         ],
@@ -16,7 +16,7 @@
         "operationId": "Convert",
         "parameters": [
           {
-            "description": "Name to be added.",
+            "description": "Existing K8S Secret in JSON format.",
             "name": "payload",
             "in": "body",
             "required": true,
@@ -34,6 +34,43 @@
           },
           "500": {
             "description": "Conversion Error"
+          }
+        }
+      }
+    },
+    "/create": {
+      "post": {
+        "description": "Creates a new encrypted secret object from raw data",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "text/plain"
+        ],
+        "tags": [
+          "create"
+        ],
+        "operationId": "Create",
+        "parameters": [
+          {
+            "description": "Details of secret to be created",
+            "name": "payload",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/secretRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Creation successful"
+          },
+          "400": {
+            "description": "Invalid request body"
+          },
+          "500": {
+            "description": "Creation error"
           }
         }
       }
@@ -101,6 +138,42 @@
         }
       },
       "x-go-name": "SecretMetadata",
+      "x-go-package": "gitlab.com/sgryczan/seel/api"
+    },
+    "secretRequest": {
+      "description": "Secret Request",
+      "type": "object",
+      "required": [
+        "name",
+        "namespace",
+        "data"
+      ],
+      "properties": {
+        "data": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "x-go-name": "Data",
+          "example": {
+            ".dockerconfigjson": "eyJhdXRocyI6eyJodHRwczovL2luZGV4LmRvY2tlci5...",
+            "admin": "my-serviceaccount",
+            "certificate": "InBhc3N3b3JkIjoiSWJjdDk0MjAiLCJlbWFpbCI6InNlYmFz...",
+            "password": "start123"
+          }
+        },
+        "name": {
+          "type": "string",
+          "x-go-name": "Name",
+          "example": "my-secret"
+        },
+        "namespace": {
+          "type": "string",
+          "x-go-name": "Namespace",
+          "example": "app-namespace"
+        }
+      },
+      "x-go-name": "SecretRequest",
       "x-go-package": "gitlab.com/sgryczan/seel/api"
     }
   }

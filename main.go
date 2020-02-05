@@ -31,6 +31,7 @@ func main() {
 
 	r.HandleFunc("/", api.HomeHandler)
 	r.HandleFunc("/convert", api.ConvertHandler).Methods("POST")
+	r.HandleFunc("/create", api.CreateHandler).Methods("POST")
 
 	sh := http.StripPrefix("/api",
 		http.FileServer(http.Dir("./swaggerui/")))
