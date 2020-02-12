@@ -52,7 +52,7 @@ spec:
     spec:
       containers:
       - name: seel
-        image: sgryczan/seel:0.0.2
+        image: sgryczan/seel:0.0.4
         imagePullPolicy: Always
       serviceAccountName: seel
       enableServiceLinks: true
@@ -85,10 +85,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - seel.sre-dev.solidfire.net
+    - seel.contoso.com
     secretName: wildcard-cert
   rules:
-  - host: seel.sre-dev.solidfire.net
+  - host: seel.contoso.com
     http:
       paths:
       - backend:
